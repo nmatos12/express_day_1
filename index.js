@@ -20,10 +20,11 @@ app.get('/', (client_request_obj, server_response_obj) => {
 
 app.get('/api', (client_request_obj, server_response_obj) => {
     const params = client_request_obj.query;
-    console.log(params);
     if (params.term) {
-        terms = terms.filter((obj => obj.term === params.term))
-    }
+        let filtered = terms.filter((obj) => obj.term === params.term);
+        return server_response_obj.json(filtered);
+
+        };
     server_response_obj.json(terms)
 });
 
